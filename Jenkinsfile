@@ -39,13 +39,13 @@ pipeline {
         stage("Run tests TestProject2") {
             steps {
                 // Run tests
-                bat 'dotnet test TestProject1/TestProject2.csproj --logger "trx;LogFileName=TestResults.trx"'
+                bat 'dotnet test TestProject2/TestProject2.csproj --logger "trx;LogFileName=TestResults.trx"'
             }
         }
         stage("Run tests TestProject3") {
             steps {
                 // Run tests
-                bat 'dotnet test TestProject1/TestProject3.csproj --logger "trx;LogFileName=TestResults.trx"'
+                bat 'dotnet test TestProject3/TestProject3.csproj --logger "trx;LogFileName=TestResults.trx"'
             }
         }
     }
