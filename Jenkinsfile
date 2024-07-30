@@ -5,7 +5,7 @@ pipeline {
         stage("Checkout code") {
             steps {
                 // Checkout the repository
-                git branch: 'main', url: "https://github.com/CooLVasileff/JenkinsSeleniumIDE_Demo_30_07"
+                git branch: 'main', url: "https://github.com/CooLVasileff/JenkinsSeleniumWebDriverTests_30_07.git"
             }
         }
         stage("Set up .Net core") {
@@ -21,19 +21,31 @@ pipeline {
         stage("Restoring nuget packages") {
             steps {
                 // Restore dependencies
-                bat 'dotnet restore SeleniumIde.sln'
+                bat 'dotnet restore SeleniumBasicExercise.sln'
             }
         }
         stage("Build") {
             steps {
                 // Build solution
-                bat 'dotnet build SeleniumIde.sln --configuration Release'
+                bat 'dotnet build SeleniumBasicExercise.sln --configuration Release'
             }
         }
-        stage("Run tests") {
+        stage("Run tests TestProject1") {
             steps {
                 // Run tests
-                bat 'dotnet test SeleniumIde.sln --logger "trx;LogFileName=TestResults.trx"'
+                bat 'dotnet test TestProject1/TestProject1.csproj --logger "trx;LogFileName=TestResults.trx"'
+            }
+        }
+        stage("Run tests TestProject2") {
+            steps {
+                // Run tests
+                bat 'dotnet test TestProject1/TestProject2.csproj --logger "trx;LogFileName=TestResults.trx"'
+            }
+        }
+        stage("Run tests TestProject3") {
+            steps {
+                // Run tests
+                bat 'dotnet test TestProject1/TestProject3.csproj --logger "trx;LogFileName=TestResults.trx"'
             }
         }
     }
